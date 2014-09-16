@@ -1,0 +1,20 @@
+(define (ncsubseq lst)
+  (let recurse ((s 0)
+                (lst lst))
+    (if (null? lst)
+        (if (>= s 3)
+            '(())
+            '())
+        (let ((x (car lst))
+              (xs (cdr lst)))
+          (if (even? s)
+              (append
+               (map (lambda (ys) (cons x ys))
+                    (recurse (+ s 1) xs))
+               (recurse s xs))
+              (append
+               (map (lambda (ys) (cons x ys))
+                    (recurse s xs))
+               (recurse (+ s 1) xs)))))))
+(ncsubseq '(1 2 3 4 5))
+
